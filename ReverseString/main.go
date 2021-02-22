@@ -21,11 +21,21 @@ func ReverseString(s string) string {
 
 	// Grab each character, typecast it as a string
 	// then concatenate it to the resulting string
-	for i := len(s) - 1; i >= 0; i-- {
+	for i := 0; i < len(s); i++ {
 		result = string(s[i]) + result
 	}
 
 	return result
+}
+
+func ReverseString2(s string) string {
+	var result []byte // Each character in a string are bytes
+
+	for i := len(s) - 1; i >= 0; i-- {
+		result = append(result, s[i])
+	}
+
+	return string(result)
 }
 
 func IsPalindrome(s string) bool {
@@ -39,17 +49,16 @@ func IsPalindrome(s string) bool {
 
 func main() {
 	// Some Example Strings
-	firstString := "I'll be back"
-	secondString := "To be, or not to be"
-	thirdString := "ABC123 321CBA"
-	fourthString := "!@#$%^"
-	fifthString := ".          !"
+	testCases := []string{
+		"racecar",
+		"To be, or not",
+		"ABC123",
+		"qwerrewq",
+		".     .",
+		"is it not so is it",
+	}
 
-	fmt.Println(ReverseString(firstString))
-	fmt.Println(ReverseString(secondString))
-	fmt.Println(ReverseString(thirdString))
-	fmt.Println(ReverseString(fourthString))
-	fmt.Println(ReverseString(fifthString))
-
-	fmt.Println(IsPalindrome(thirdString))
+	for _, v := range testCases {
+		fmt.Printf("%v\n%v\nPalindrome: %v\n", v, ReverseString(v), IsPalindrome(v))
+	}
 }
